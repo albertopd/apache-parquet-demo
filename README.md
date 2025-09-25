@@ -1,8 +1,8 @@
-# Apache Parquet vs CSV Benchmarking Demo
+# Apache Parquet vs CSV - Benchmarking and Visualization
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Python](https://img.shields.io/badge/Python-3.13-blue.svg)](https://www.python.org/) [![pandas](https://img.shields.io/badge/pandas-2.2-blue.svg)](https://pandas.pydata.org/) [![fastparquet](https://img.shields.io/badge/fastparquet-2024.5.0-blue.svg)](https://fastparquet.readthedocs.io/) [![matplotlib](https://img.shields.io/badge/matplotlib-3.9-blue.svg)](https://matplotlib.org/) 
 
-This project demonstrates the performance advantages of Apache Parquet over CSV format for data storage and processing. Using the "Best Books Ever" dataset, it compares file sizes, read performance, and advanced features like column selection, predicate pushdown, and partition pruning.
+This project demonstrates the performance advantages of Apache Parquet over CSV format for data storage and processing. Using the "Best Books Ever" dataset, it compares file sizes, read performance, and advanced features like column selection, predicate pushdown and partition pruning.
 
 ## ✨ Features
 
@@ -98,8 +98,8 @@ Typical results show significant storage savings:
 =============== File Size Comparison ==============
 CSV                       70.43 MB
 Parquet (default)         40.66 MB  (42.3% smaller)
-Parquet (compressed)      25.36 MB  (64.0% smaller)
-Parquet (comp/partioned)  23.32 MB  (66.9% smaller)
+Parquet (compressed)      24.40 MB  (65.4% smaller)
+Parquet (comp/partioned)  22.48 MB  (68.1% smaller)
 ```
 
 ### Performance Improvements
@@ -108,20 +108,24 @@ Benchmark results demonstrate Parquet's advantages:
 
 ```
 =================== Load Full Dataset ====================
-CSV                                           Time: 1.203s
-Parquet                                       Time: 0.227s
+CSV                                           Time: 1.219s
+Parquet                                       Time: 0.202s
+========================= Parquet is 83.4% faster than CSV
 
 ===== Load Subset of Columns (title, author, rating) =====
-CSV - Column Subset                           Time: 0.520s
+CSV - Column Subset                           Time: 0.563s
 Parquet - Column Pruning                      Time: 0.020s
+========================= Parquet is 96.4% faster than CSV
 
 ============= Load Rows Where: rating > 4.5 ==============
-CSV - Filter Rows After Load                  Time: 1.220s
-Parquet - Predicate Pushdown                  Time: 0.207s
+CSV - Filter Rows After Load                  Time: 1.265s
+Parquet - Predicate Pushdown                  Time: 0.228s
+========================= Parquet is 82.0% faster than CSV
 
 ========= Load Rows Where: language == 'English' =========
-CSV - Filter Rows After Load                  Time: 1.245s
-Parquet - Partition Pruning                   Time: 0.389s
+CSV - Filter Rows After Load                  Time: 1.313s
+Parquet - Partition Pruning                   Time: 0.235s
+========================= Parquet is 82.1% faster than CSV
 ```
 
 ### Visual Charts
